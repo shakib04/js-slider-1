@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+
+    <style>
+        .container {
+            height: 400px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 30%;
+            position: relative;
+        }
+
+        .container .images {
+            height: 100%;
+            width: 50%;
+            position: absolute;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 5s;
+        }
+
+        .container .images.active {
+            opacity: 1;
+        }
+
+        .container div img {
+            height: 100%;
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="images active"><img src="" alt=""></div>
+        <div class="images"><img src="" alt=""></div>
+        <div class="images"><img src="" alt=""></div>
+        <div class="images"><img src="" alt=""></div>
+    </div>
+
+
+
+
+    <script src="img.js"></script>
+    <script>
+        var images = [img1, img2, img3, img4];
+
+        for (let index = 0; index < 4; index++) {
+            document.querySelectorAll(".images img")[index].src = images[index];
+        }
+
+        var index = 0;
+
+        function Slider () {
+
+            if (index == 3) {
+                document.querySelectorAll(".images")[index].classList.remove("active");
+                index = 0;
+                document.querySelectorAll(".images")[index].classList.add("active");
+            } else {
+                if (document.querySelectorAll(".images")[index].classList.contains("active")) {
+                    document.querySelectorAll(".images")[index + 1].classList.add("active");
+                    document.querySelectorAll(".images")[index].classList.remove("active");
+                    index++;
+                }
+            }
+        }
+        document.querySelector(".container").addEventListener("click", Slider);
+
+    </script>
+</body>
+
+</html>
