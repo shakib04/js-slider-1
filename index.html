@@ -21,7 +21,7 @@
             position: absolute;
             cursor: pointer;
             opacity: 0;
-            transition: all 5s;
+            transition: all 1500ms;
         }
 
         .container .images.active {
@@ -40,27 +40,36 @@
 
     <div class="container">
         <div class="images active"><img src="" alt=""></div>
+        <!-- <div class="images"><img src="" alt=""></div>
         <div class="images"><img src="" alt=""></div>
-        <div class="images"><img src="" alt=""></div>
-        <div class="images"><img src="" alt=""></div>
+        <div class="images"><img src="" alt=""></div> -->
     </div>
 
 
 
 
+    <!-- <script src="https://cdn.jsdelivr.net/gh/shakib04/js-slider-1@master/img.js"></script> -->
     <script src="img.js"></script>
     <script>
-        var images = [img1, img2, img3, img4];
+        var images = [img1, img2, img3, img4, i5, i6];
+        var len = images.length;
+        var divImages = "";
 
-        for (let index = 0; index < 4; index++) {
+        for (let index = 1; index < len; index++) {
+            divImages = divImages + '<div class="images"><img src="" alt=""></div>';
+        }
+
+        document.querySelector(".container").innerHTML = document.querySelector(".container").innerHTML + divImages;
+
+        for (let index = 0; index < len; index++) {
             document.querySelectorAll(".images img")[index].src = images[index];
         }
 
         var index = 0;
 
-        function Slider () {
+        function Slider() {
 
-            if (index == 3) {
+            if (index == len - 1) {
                 document.querySelectorAll(".images")[index].classList.remove("active");
                 index = 0;
                 document.querySelectorAll(".images")[index].classList.add("active");
@@ -71,8 +80,9 @@
                     index++;
                 }
             }
-        }
+        }  
         document.querySelector(".container").addEventListener("click", Slider);
+        setInterval(Slider, 1510);
 
     </script>
 </body>
